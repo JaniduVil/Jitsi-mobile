@@ -4,6 +4,7 @@ metadata:
   name: jitsi-meet
   namespace: jitsi
 spec:
+  type: LoadBalancer
   ports:
   - port: 80
     targetPort: 80
