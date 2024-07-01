@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jvb
+  namespace: jitsi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jvb
+  template:
+    metadata:
+      labels:
+        app: jvb
+    spec:
+      containers:
+      - name: jvb
+        image: jitsi/jvb:latest
+        ports:
+        - containerPort: 10000
+        env:
+        - name: XMPP_SERVER
+          value: "prosody"
+        - name: XMPP_BOSH_URL_BASE
+          value: "http://prosody:5280"
+        - name: XMPP_DOMAIN
+          value: "meet.jitsi"
