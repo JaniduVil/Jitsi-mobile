@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jicofo
+  namespace: jitsi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jicofo
+  template:
+    metadata:
+      labels:
+        app: jicofo
+    spec:
+      containers:
+      - name: jicofo
+        image: jitsi/jicofo:latest
+        env:
+        - name: XMPP_SERVER
+          value: "prosody"
+        - name: XMPP_BOSH_URL_BASE
+          value: "http://prosody:5280"
+        - name: XMPP_DOMAIN
+          value: "meet.jitsi"
